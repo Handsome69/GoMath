@@ -12,7 +12,7 @@ func CreateGraph(f expression) {
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.Black)
 		for i := -600; i < 600; i++ {
-			rl.DrawPixel(int32(i), int32(points[i]), rl.White)
+			rl.DrawPixel(int32(i), int32(points[i+600]), rl.White)
 		}
 		rl.EndDrawing()
 	}
