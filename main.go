@@ -6,7 +6,7 @@ func Division(a int, b int) (int, int) {
 }
 
 func Mod(a int, b int) int {
-	if a > b {
+	if a >= b {
 		return Mod(a-b, b)
 	}
 	return a
@@ -29,6 +29,10 @@ func Pow(a int, b int) int {
 
 func GetDiv(a int) []int {
 	var d []int
-	d = append(d, 1)
+	for i := 1; i <= a; i++ {
+		if Mod(a, i) == 0 {
+			d = append(d, i)
+		}
+	}
 	return d
 }
