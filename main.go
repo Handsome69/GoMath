@@ -1,7 +1,7 @@
 package gomath
 
 func Division(a int, b int) (int, int) {
-	var m int = Mod(a, b)
+	var m int = Mod(a, b) //lol
 	return (a - b) / m, m
 }
 
