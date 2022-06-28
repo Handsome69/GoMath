@@ -1,5 +1,7 @@
 package gomath
 
+type expression func(float64) float64
+
 func Division(a int, b int) (int, int) {
 	var m int = Mod(a, b)
 	return (a - m) / b, m
@@ -35,4 +37,32 @@ func GetDiv(a int) []int {
 		}
 	}
 	return d
+}
+
+func IsPrime(a int) bool {
+	return len(GetDiv(a)) < 3
+}
+
+func Sum(e expression, start int, end int) float64 {
+	var result float64 = 0
+	for i := start; i <= end; i++ {
+		result += e(float64(i))
+	}
+	return result
+}
+
+func Prod(e expression, start int, end int) float64 {
+	var result float64 = 1
+	for i := start; i <= end; i++ {
+		result *= e(float64(i))
+	}
+	return result
+}
+
+func Pi() float64 {
+	return 3.141592653589793238462643
+}
+
+func E() float64 {
+	return 2.718281828459045235360287
 }

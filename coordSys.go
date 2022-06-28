@@ -1,23 +1,29 @@
 package gomath
 
 import (
-	"fmt"
-
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
-type graph func(float64) float64
-
-func CreateGraph(f graph) {
-	rl.InitWindow(450, 450, "Graph")
+func CreateGraph(f expression) {
+	rl.InitWindow(600, 600, "Graph")
 	rl.SetTargetFPS(60)
+	points := DrawGraph(f)
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.Black)
-		s := fmt.Sprintf("%f", f(5))
-		rl.DrawText(s, 0, 0, 10, rl.White)
+		for i := -600; i < 600; i++ {
+			rl.DrawPixel(int32(i), int32(points[i]), rl.White)
+		}
 		rl.EndDrawing()
 	}
 
 	rl.CloseWindow()
+}
+
+func DrawGraph(f expression) []float64 {
+	var result []float64
+	for i := -600; i < 600; i++ {
+		result = append(result, f(float64(i/120)))
+	}
+	return result
 }
